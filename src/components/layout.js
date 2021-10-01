@@ -29,13 +29,7 @@ const Layout = ({ children }) => {
 
       <main>{children}</main>
       <footer>
-        <div
-          style={{
-            marginTop: `2rem`,
-            maxWidth: 1200,
-            margin: `auto`,
-          }}
-        >
+        <div>
           © {new Date().getFullYear()}, Built by
           {` `}
           <a href="https://tolka.io">Tolka</a>

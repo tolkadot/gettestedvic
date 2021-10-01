@@ -649,7 +649,11 @@ pre tt:after {
 main {
   max-width: 1200px;
   margin: auto;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 200px);
+  padding: 0 1rem;
+  @media (min-width: 768px) {
+    padding: 0 3rem;
+  }
 }
 body {
   font: 100% $font-stack;
@@ -672,6 +676,25 @@ body {
 header.header--main {
   background-color: $highlight-color;
   margin-bottom: 1.45rem;
+  > div {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 1rem;
+    @media (min-width: 768px) {
+      padding: 0 3rem;
+    }
+  }
+}
+
+footer {
+  > div {
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem 1rem;
+    @media (min-width: 768px) {
+      padding: 1rem 3rem;
+    }
+  }
 }
 
 .visually-hidden {

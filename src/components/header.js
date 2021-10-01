@@ -4,13 +4,7 @@ import { Link } from "gatsby"
 
 const Header = ({ siteTitle }) => (
   <header className="header--main">
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 1200,
-        padding: `1.45rem 1.0875rem 1.45rem 0`,
-      }}
-    >
+    <div>
       <h1 style={{ margin: 0 }}>
         <Link
           to="/"
