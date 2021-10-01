@@ -26,24 +26,21 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer
+
+      <main>{children}</main>
+      <footer>
+        <div
           style={{
             marginTop: `2rem`,
+            maxWidth: 1200,
+            margin: `auto`,
           }}
         >
           © {new Date().getFullYear()}, Built by
           {` `}
           <a href="https://tolka.io">Tolka</a>
-        </footer>
-      </div>
+        </div>
+      </footer>
     </>
   )
 }

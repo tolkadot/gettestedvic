@@ -646,9 +646,10 @@ pre tt:after {
   }
 }
 
-body {
+main {
   max-width: 1200px;
   margin: auto;
+  min-height: calc(100vh - 80px);
 }
 body {
   font: 100% $font-stack;

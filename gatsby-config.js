@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Get Tested Victoria`,
-    description: `Find your details of Covid testing sites in Victoria.`,
+    description: `Find your details of Covid testing locations in Victoria.`,
     author: `@tolkadot`,
     siteUrl: `https://gettestedvictoria.com/`,
   },
@@ -23,12 +23,12 @@ module.exports = {
         name: `gatsby-starter-default`,
         short_name: `starter`,
         start_url: `/`,
-        background_color: `#663399`,
+        background_color: `#5eaf77`,
         // This will impact how browsers show your PWA/website
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/get-tested-vic.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-sass`,
