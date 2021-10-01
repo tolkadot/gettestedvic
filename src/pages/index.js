@@ -17,7 +17,8 @@ const IndexPage = () => {
   const cities = []
   // Client-side Runtime Data Fetching
   const url =
-    "https://gist.githubusercontent.com/tolkadot/bf82976676f5e3140c8acead487328c0/raw/3180bbd7fe7a6067f2ccf14f8f2c34d921a5418d/vic-covid-testing-sites.json"
+    "https://gist.githubusercontent.com/tolkadot/bf82976676f5e3140c8acead487328c0/raw/vic-covid-testing-sites.json"
+  //"https://gist.githubusercontent.com/tolkadot/bf82976676f5e3140c8acead487328c0/raw/d732553023f50837868d9508573b2e9be8c919af/vic-covid-testing-sites.json"
 
   useEffect(() => {
     fetch(url)
@@ -65,13 +66,18 @@ const IndexPage = () => {
       </form>
       {placeFound.map(place => (
         <ul>
-          <li>Suburb: {place.Suburb}</li>
           <li>
+            Suburb:
             {reactStringReplace(place.Suburb, typedValueState, (match, i) => (
               <span className="hl">{typedValueState}</span>
             ))}
           </li>
-          <li>LGA: {place.LGA}</li>
+          <li>
+            LGA:
+            {reactStringReplace(place.LGA, typedValueState, (match, i) => (
+              <span className="hl"> {typedValueState}</span>
+            ))}
+          </li>
           <li>Address: {place.Address}</li>
           <li>Format: {place.ServiceFormat}</li>
           <li>
