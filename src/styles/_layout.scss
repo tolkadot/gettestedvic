@@ -53,6 +53,8 @@ template {
 a {
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
+  color: $anchor-color;
+  text-decoration: underline;
 }
 a:active,
 a:hover {
@@ -81,13 +83,46 @@ h1 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: $font-stack, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
-  font-size: 2.25rem;
-  line-height: 1.1;
+  font-size: 1.953rem;
+  line-height: 1.5;
+  @media (min-width: 768px) {
+    font-size: 3.052rem;
+  }
 }
+
+h2 {
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  margin-bottom: 1.45rem;
+  color: inherit;
+  font-family: $font-stack, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+  font-size: 1.563rem;
+  line-height: 1.2;
+  @media (min-width: 768px) {
+    font-size: 2.441rem;
+  }
+}
+
+.text--body-large {
+  font-size: 1.25rem;
+  line-height: 1.2;
+  @media (min-width: 768px) {
+    font-size: 1.563rem;
+  }
+}
+
 mark {
   background-color: #ff0;
   color: #000;
@@ -216,6 +251,33 @@ legend {
 textarea {
   overflow: auto;
 }
+
+input {
+  box-shadow: 0 1px 3px rgba(94, 175, 119, 0.12),
+    0 1px 2px rgba(94, 175, 119, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  width: 100%;
+  border: 2px solid $highlight-color;
+  min-height: 50px;
+  padding: 0.5rem 1rem;
+}
+
+input:hover {
+  box-shadow: 0 3px 5px rgba(94, 175, 119, 0.25),
+    0 10px 10px rgba(94, 175, 119, 0.22);
+}
+a:focus,
+input:focus {
+  outline: 1px solid $highlight-color-opacity;
+  border-color: $highlight-color;
+  box-shadow: 0 0 10px $highlight-color;
+}
+
+header.header--main a:focus {
+  outline: 1px solid white;
+  box-shadow: 0 0 10px white;
+}
+
 [type="checkbox"],
 [type="radio"] {
   box-sizing: border-box;
@@ -250,23 +312,7 @@ textarea {
 *:after {
   box-sizing: inherit;
 }
-h2 {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.45rem;
-  color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
-  font-size: 1.62671rem;
-  line-height: 1.1;
-}
+
 h3 {
   margin-left: 0;
   margin-right: 0;
@@ -346,7 +392,7 @@ hgroup {
   margin-bottom: 1.45rem;
 }
 ul {
-  margin-left: 1.45rem;
+  //margin-left: 1.45rem;
   margin-right: 0;
   margin-top: 0;
   padding-bottom: 0;
@@ -356,6 +402,10 @@ ul {
   margin-bottom: 1.45rem;
   list-style-position: outside;
   list-style-image: none;
+  list-style-type: none;
+  li:last-child {
+    margin-bottom: 0;
+  }
 }
 ol {
   margin-left: 1.45rem;
@@ -594,4 +644,43 @@ pre tt:after {
   html {
     font-size: 100%;
   }
+}
+
+body {
+  max-width: 1200px;
+  margin: auto;
+}
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}
+
+.hl {
+  background: $highlight-color-opacity;
+}
+
+.hl:empty {
+  background: white;
+}
+
+.card--results {
+  padding: 2rem;
+  @include box-shadow;
+}
+
+header.header--main {
+  background-color: $highlight-color;
+  margin-bottom: 1.45rem;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
