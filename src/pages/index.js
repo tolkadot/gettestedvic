@@ -39,6 +39,7 @@ const IndexPage = () => {
   function formatDate(date) {
     if (date.length === 19) {
       const month = [
+        "",
         "Jan",
         "Feb",
         "Mar",
