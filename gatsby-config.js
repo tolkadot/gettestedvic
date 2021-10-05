@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Get Tested Victoria`,
-    description: `Find your details of Covid testing locations in Victoria.`,
+    description: `Find details of Covid 19 testing locations in Victoria, Australia.`,
     author: `@tolkadot`,
     siteUrl: `https://gettestedvictoria.com/`,
   },
@@ -37,7 +37,7 @@ module.exports = {
       resolve: `gatsby-plugin-robots-txt`,
       options: {
         host: `https://gettestedvictoria.com/`,
-        sitemap: `https://gettestedvictoria.com/sitemap.xml`,
+        sitemap: `https://gettestedvictoria.com/sitemap/sitemap-0.xml`,
         policy: [{ userAgent: `*`, allow: `/` }],
       },
     },

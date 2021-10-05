@@ -11,27 +11,60 @@ const IndexPage = () => {
 
   const [data, setData] = useState([])
   const [meta, setMeta] = useState([])
-  const [placeToFind, setplaceToFind] = useState([])
+  //const [placeToFind, setplaceToFind] = useState([])
   const [placeFound, setplaceFound] = useState([])
-  const [regex, setRegex] = useState()
+  //const [regex, setRegex] = useState()
   const [typedValueState, setTypedValueState] = useState()
-
-  const cities = []
+  //let fixedDate
   // Client-side Runtime Data Fetching
   const url =
     "https://gist.githubusercontent.com/tolkadot/bf82976676f5e3140c8acead487328c0/raw/vic-covid-testing-sites.json"
   //"https://gist.githubusercontent.com/tolkadot/bf82976676f5e3140c8acead487328c0/raw/d732553023f50837868d9508573b2e9be8c919af/vic-covid-testing-sites.json"
 
   useEffect(() => {
+    const cities = []
+
     fetch(url)
       .then(response => response.json()) // parse JSON from request
       .then(resultData => {
-        console.log(resultData.sites)
+        // console.log(resultData.sites)
         cities.push(...resultData.sites)
-        setMeta(resultData.meta)
+        // console.log(resultData.meta)
+        //fixedDate = formatDate(resultData.meta.releaseDate)
+        setMeta(formatDate(resultData.meta.releaseDate))
         setData(cities)
       })
   }, [])
+
+  function formatDate(date) {
+    if (date.length === 19) {
+      const month = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ]
+      return (
+        date.substring(8, 10) +
+        " " +
+        month[date.substring(5, 7)] +
+        " " +
+        date.substring(0, 4) +
+        " " +
+        date.substring(11, 16)
+      )
+    } else {
+      return "Not currently available"
+    }
+  }
 
   function findMatches(inputWord, citiesArray) {
     return citiesArray.filter(place => {
@@ -41,10 +74,10 @@ const IndexPage = () => {
   }
 
   function handleChange(e) {
-    console.log(e.target.value)
+    //console.log(e.target.value)
     setTypedValueState(e.target.value)
-    setRegex(new RegExp(e.target.value, "gi"))
-    console.log("REGEX", regex)
+    //setRegex(new RegExp(e.target.value, "gi"))
+    //console.log("REGEX", regex)
     setplaceFound(findMatches(e.target.value, data))
   }
 
@@ -54,13 +87,13 @@ const IndexPage = () => {
 
       <section>
         <header>
-          <h2>Covid testing locations in Victoria Australia</h2>
+          <h2>Covid testing locations in Victoria, Australia</h2>
         </header>
         <p className="text--body-large">
-          Last Updated: <span id="updated">{meta.releaseDate}</span>
+          Last Updated: <span id="updated">{meta}</span>
         </p>
         <form className="search-form">
-          <label for="cities-search" className="visually-hidden">
+          <label htmlFor="cities-search" className="visually-hidden">
             Enter a City or Suburb
           </label>
           <input
@@ -81,9 +114,7 @@ const IndexPage = () => {
             </li>
             <li>
               <strong>LGA:&nbsp;</strong>
-              {reactStringReplace(place.LGA, typedValueState, (match, i) => (
-                <span className="hl"> {typedValueState}</span>
-              ))}
+              {place.LGA}
             </li>
             <li>
               <strong>Address:&nbsp;</strong> {place.Address}
@@ -132,12 +163,25 @@ const IndexPage = () => {
                   place.Longitude
                 }
                 target="_blank"
+                rel="noreferrer"
               >
                 Take me to the map
               </a>
             </li>
           </ul>
         ))}
+      </section>
+      <section>
+        <p>
+          Information about Covid 19 testing centers is pulled from the{" "}
+          <a
+            href="https://discover.data.vic.gov.au/dataset/victorian-testing-site-locations-for-covid-19"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Data Vic website
+          </a>
+        </p>
       </section>
     </Layout>
   )
