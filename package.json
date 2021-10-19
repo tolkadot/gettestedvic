@@ -1,12 +1,13 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "get-tested-victoria",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Find details of Covid 19 testing locations in Victoria, Australia.",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "dee@tolka.io",
   "dependencies": {
     "gatsby": "^3.13.1",
     "gatsby-plugin-google-analytics": "^3.14.0",
+    "gatsby-plugin-google-gtag": "^3.14.0",
     "gatsby-plugin-image": "^1.13.0",
     "gatsby-plugin-manifest": "^3.13.0",
     "gatsby-plugin-offline": "^4.13.0",

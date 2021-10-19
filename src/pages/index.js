@@ -95,7 +95,8 @@ const IndexPage = () => {
 
       <section>
         <header>
-          <h2>Covid testing locations in Victoria, Australia</h2>
+          <h2>Coronavirus / COVID-19 testing center locations in Victoria, Australia</h2>
+          <p>Find your nearest COVID-19 testing center.  Type in your suburb for details of address, opening hours and contact numbers. </p>
         </header>
         <p className="text--body-large">
           Last Updated: <span id="updated">{meta}</span>
@@ -181,13 +182,13 @@ const IndexPage = () => {
       </section>
       <section>
         <p>
-          Information about Covid 19 testing centers is pulled from the{" "}
+          Information about Coronavirus / COVID-19 testing centers is pulled from the{" "}
           <a
             href="https://discover.data.vic.gov.au/dataset/victorian-testing-site-locations-for-covid-19"
             target="_blank"
             rel="noreferrer"
           >
-            Data Vic website
+             Data Vic website
           </a>
         </p>
       </section>

@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Get Tested Victoria`,
+    title: `Get tested for COVID-19 in Victoria `,
     description: `Find details of Covid 19 testing locations in Victoria, Australia.`,
     author: `@tolkadot`,
     siteUrl: `https://gettestedvictoria.com/`,
@@ -42,13 +42,14 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-        // The property ID; the tracking code won't be generated without it
-        trackingId: "G-6XJJFYQ26T",
-        // Defines where to place the tracking script - `true` in the head and `false` in the body
-        head: true,
-
+        trackingIds: [
+          "G-6XJJFYQ26T", 
+        ],
+        pluginConfig: {
+          head: true,
+        },
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
