@@ -19,20 +19,27 @@ const IndexPage = () => {
   // Client-side Runtime Data Fetching
   const url =
     "https://gist.githubusercontent.com/tolkadot/bf82976676f5e3140c8acead487328c0/raw/vic-covid-testing-sites.json"
-  //"https://gist.githubusercontent.com/tolkadot/bf82976676f5e3140c8acead487328c0/raw/d732553023f50837868d9508573b2e9be8c919af/vic-covid-testing-sites.json"
 
   useEffect(() => {
     const cities = []
 
     fetch(url)
-      .then(response => response.json()) // parse JSON from request
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok")
+        }
+        return response.json()
+      }) // parse JSON from request
       .then(resultData => {
-        // console.log(resultData.sites)
         cities.push(...resultData.sites)
-        // console.log(resultData.meta)
-        //fixedDate = formatDate(resultData.meta.releaseDate)
         setMeta(formatDate(resultData.meta.releaseDate))
         setData(cities)
+      })
+      .catch(error => {
+        console.error(
+          "There has been a problem with your fetch operation:",
+          error
+        )
       })
   }, [])
 
