@@ -17,20 +17,27 @@ const IndexPage = () => {
   const [typedValueState, setTypedValueState] = useState()
   //let fixedDate
   // Client-side Runtime Data Fetching
-  const url =
-    "https://gist.githubusercontent.com/tolkadot/bf82976676f5e3140c8acead487328c0/raw/vic-covid-testing-sites.json"
+  const url ="https://polished-frost-2201.tolka.workers.dev/tolka/https://pausedatahealth01.blob.core.windows.net/testsitemaster/testingsitedata/TestSitesData.json"
+  // "
+//"https://test.cors.workers.dev/?https://pausedatahealth01.blob.core.windows.net/testsitemaster/testingsitedata/TestSitesData.json"
+  //"https://thingproxy.freeboard.io/fetch/https://pausedatahealth01.blob.core.windows.net/testsitemaster/testingsitedata/TestSitesData.json"
+    //"https://gist.githubusercontent.com/tolkadot/bf82976676f5e3140c8acead487328c0/raw/vic-covid-testing-sites.json"
 
+    
   useEffect(() => {
     const cities = []
 
     fetch(url)
       .then(response => {
+         console.log(response);
         if (!response.ok) {
           throw new Error("Network response was not ok")
         }
         return response.json()
       }) // parse JSON from request
       .then(resultData => {
+        console.log("ok");
+
         cities.push(...resultData.sites)
         setMeta(formatDate(resultData.meta.releaseDate))
         setData(cities)
@@ -129,6 +136,9 @@ const IndexPage = () => {
               <strong>Address:&nbsp;</strong> {place.Address}
             </li>
             <li>
+              <strong>Status:&nbsp;</strong> {place.Status}
+            </li>
+            <li>
               <strong>Format:&nbsp;</strong> {place.ServiceFormat}
             </li>
             <li>
@@ -161,6 +171,12 @@ const IndexPage = () => {
               <strong>Toilets:&nbsp;</strong>
               {place.Toilets_Available != null
                 ? place.Toilets_Available
+                : "No details available"}
+            </li>
+            <li>
+              <strong>Current Wait Time:&nbsp;</strong>
+              {place.DelayText != null
+                ? place.DelayText
                 : "No details available"}
             </li>
             <li>
