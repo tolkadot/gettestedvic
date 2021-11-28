@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react"
 
-/*components*/
+//components
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-/*styles*/
+//styles
 import "../styles/theme.scss"
 
-
+//helper
 const reactStringReplace = require("react-string-replace")
+
 
 const IndexPage = () => {
 
@@ -18,7 +19,7 @@ const IndexPage = () => {
   const [placeFound, setPlaceFound] = useState([])
   const [typedValueState, setTypedValueState] = useState('')
 
-  // Client-side Runtime Data Fetching
+  //client-side Runtime Data Fetching
   const url ="https://polished-frost-2201.tolka.workers.dev/tolka/https://pausedatahealth01.blob.core.windows.net/testsitemaster/testingsitedata/TestSitesData.json"
   //"https://test.cors.workers.dev/?https://pausedatahealth01.blob.core.windows.net/testsitemaster/testingsitedata/TestSitesData.json"
   //"https://thingproxy.freeboard.io/fetch/https://pausedatahealth01.blob.core.windows.net/testsitemaster/testingsitedata/TestSitesData.json"
@@ -131,7 +132,7 @@ const IndexPage = () => {
             <li>
               <strong>Suburb:&nbsp;</strong>
               {reactStringReplace(place.Suburb, typedValueState, (match, i) => (
-                <span className="hl">{typedValueState}</span>
+                <span className="hl">{capitalizeFirstLetter(typedValueState)}</span>
               ))}
             </li>
             <li>
@@ -205,7 +206,7 @@ const IndexPage = () => {
       </section>
       <section>
         <p>
-          Information about Coronavirus / COVID-19 testing centers is pulled from the
+          Information about Coronavirus / COVID-19 testing centers is pulled from the &nbsp;
           <a
             href="https://discover.data.vic.gov.au/dataset/victorian-testing-site-locations-for-covid-19"
             target="_blank"

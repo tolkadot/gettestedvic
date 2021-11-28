@@ -91,6 +91,7 @@ h1 {
   line-height: 1.5;
   @media (min-width: 768px) {
     font-size: 3.052rem;
+    line-height: 1.2;
   }
 }
 
@@ -679,9 +680,9 @@ header.header--main {
   > div {
     max-width: 1200px;
     margin: auto;
-    padding: 0 1rem;
+    padding: 1rem 1rem .7rem;
     @media (min-width: 768px) {
-      padding: 0 3rem;
+      padding: 1rem 3rem .7rem;
     }
   }
 }
