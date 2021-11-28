@@ -22,17 +22,17 @@ const Layout = ({ children }) => {
       }
     }
   `)
-
+  console.log(data);
   return (
     <>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
 
       <main>{children}</main>
+      
       <footer>
         <div>
           © {new Date().getFullYear()}, Built by
-          {` `}
-          <a href="https://tolka.io">Tolka</a>
+          <a href="https://tolka.io" target="_blank" rel="noreferrer"> Tolka</a>
         </div>
       </footer>
     </>

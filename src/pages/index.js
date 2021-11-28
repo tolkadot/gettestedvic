@@ -1,46 +1,48 @@
 import React, { useState, useEffect } from "react"
+
+/*components*/
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
+/*styles*/
 import "../styles/theme.scss"
+
 
 const reactStringReplace = require("react-string-replace")
 
 const IndexPage = () => {
-  // Build Time Data Fetching
 
+  //state variables
   const [data, setData] = useState([])
   const [meta, setMeta] = useState([])
-  //const [placeToFind, setplaceToFind] = useState([])
-  const [placeFound, setplaceFound] = useState([])
-  //const [regex, setRegex] = useState()
-  const [typedValueState, setTypedValueState] = useState()
-  //let fixedDate
+  const [placeFound, setPlaceFound] = useState([])
+  const [typedValueState, setTypedValueState] = useState('')
+
   // Client-side Runtime Data Fetching
   const url ="https://polished-frost-2201.tolka.workers.dev/tolka/https://pausedatahealth01.blob.core.windows.net/testsitemaster/testingsitedata/TestSitesData.json"
-  // "
-//"https://test.cors.workers.dev/?https://pausedatahealth01.blob.core.windows.net/testsitemaster/testingsitedata/TestSitesData.json"
+  //"https://test.cors.workers.dev/?https://pausedatahealth01.blob.core.windows.net/testsitemaster/testingsitedata/TestSitesData.json"
   //"https://thingproxy.freeboard.io/fetch/https://pausedatahealth01.blob.core.windows.net/testsitemaster/testingsitedata/TestSitesData.json"
-    //"https://gist.githubusercontent.com/tolkadot/bf82976676f5e3140c8acead487328c0/raw/vic-covid-testing-sites.json"
+  //"https://gist.githubusercontent.com/tolkadot/bf82976676f5e3140c8acead487328c0/raw/vic-covid-testing-sites.json"
 
     
   useEffect(() => {
+
     const cities = []
 
     fetch(url)
       .then(response => {
-         console.log(response);
+        console.log(response);
         if (!response.ok) {
           throw new Error("Network response was not ok")
         }
-        return response.json()
-      }) // parse JSON from request
-      .then(resultData => {
-        console.log("ok");
+        return response.json() // parse JSON from request
 
-        cities.push(...resultData.sites)
-        setMeta(formatDate(resultData.meta.releaseDate))
-        setData(cities)
+      }) 
+      .then(resultData => {
+        console.log(resultData);
+        cities.push(...resultData.sites) //push sites object into cities array
+        setMeta(formatDate(resultData.meta.releaseDate)) //set the meta const
+        setData(cities) //set the data const 
       })
       .catch(error => {
         console.error(
@@ -50,6 +52,7 @@ const IndexPage = () => {
       })
   }, [])
 
+  //format of queried date is "2021-11-28 13:16:50" convert to  28 Nov 2021 13:16
   function formatDate(date) {
     if (date.length === 19) {
       const month = [
@@ -82,6 +85,7 @@ const IndexPage = () => {
   }
 
   function findMatches(inputWord, citiesArray) {
+    console.log(inputWord, citiesArray)
     return citiesArray.filter(place => {
       const regexInput = new RegExp(inputWord, "gi")
       return place.Suburb.match(regexInput) || place.LGA.match(regexInput)
@@ -91,9 +95,11 @@ const IndexPage = () => {
   function handleChange(e) {
     //console.log(e.target.value)
     setTypedValueState(e.target.value)
-    //setRegex(new RegExp(e.target.value, "gi"))
-    //console.log("REGEX", regex)
-    setplaceFound(findMatches(e.target.value, data))
+    setPlaceFound(findMatches(e.target.value, data))
+  }
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   return (
@@ -121,7 +127,7 @@ const IndexPage = () => {
           />
         </form>
         {placeFound.map(place => (
-          <ul className="card--results">
+          <ul className="card--results" key={place.Site_ID}>
             <li>
               <strong>Suburb:&nbsp;</strong>
               {reactStringReplace(place.Suburb, typedValueState, (match, i) => (
@@ -130,7 +136,10 @@ const IndexPage = () => {
             </li>
             <li>
               <strong>LGA:&nbsp;</strong>
-              {place.LGA}
+              
+               {reactStringReplace(place.LGA, typedValueState, (match, i) => (
+                <span className="hl">{capitalizeFirstLetter(typedValueState)}</span>
+              ))}
             </li>
             <li>
               <strong>Address:&nbsp;</strong> {place.Address}
@@ -143,11 +152,9 @@ const IndexPage = () => {
             </li>
             <li>
               <strong>Phone:&nbsp;</strong>
-              <a href={place.Phone && "tel:" + place.Phone}>
                 {place.Phone != null
-                  ? place.Phone
+                  ? <a href={place.Phone && "tel:" + place.Phone}>place.Phone</a>
                   : " No phone number available"}
-              </a>
             </li>
             <li>
               <strong>Hours:&nbsp;</strong>
@@ -198,7 +205,7 @@ const IndexPage = () => {
       </section>
       <section>
         <p>
-          Information about Coronavirus / COVID-19 testing centers is pulled from the{" "}
+          Information about Coronavirus / COVID-19 testing centers is pulled from the
           <a
             href="https://discover.data.vic.gov.au/dataset/victorian-testing-site-locations-for-covid-19"
             target="_blank"
